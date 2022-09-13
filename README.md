@@ -27,7 +27,7 @@ pinto run my-command --arg1
 ```
 
 ## Pipelines
-If your commands are compatible with [`typeo`](https://github.com/ML4GW/typeo), they can be linked together via a `Pipeline` of `steps`. See the [`typeo` README](https://github.com/ML4GW/typeo/README.md) for more information on how to easily turn your functions into command line scripts. To create a `Pipeline` make a `pyproject.toml` containing a `tool.pinto` table with the following structure:
+If your commands are compatible with [`typeo`](https://github.com/ML4GW/typeo), they can be linked together via a `Pipeline` of `steps`. See the `typeo` [README](https://github.com/ML4GW/typeo/README.md) for more information on how to easily turn your functions into command line scripts. To create a `Pipeline` make a `pyproject.toml` containing a `tool.pinto` table with the following structure:
 
 ```toml
 [tool.pinto]
