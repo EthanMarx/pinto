@@ -34,7 +34,7 @@ If your commands are compatible with [`typeo`](https://github.com/ML4GW/typeo), 
 steps = [
     "project_directory1:project-executable1:optional-subcommand1",
     "project_directory2:project-executable2:optional-subcommand2",
-    "..."
+    ...
 
 ]
 ```
