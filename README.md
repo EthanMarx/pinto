@@ -26,7 +26,8 @@ pinto build
 pinto run my-command --arg1
 ```
 
-Additionally, consecutive commands (i.e. `steps`) can be linked together via a `Pipeline`. To define a `Pipeline` create a `pyproject.toml` containing a `tool.pinto` table with the following structure:
+## Pipelines
+If your commands are compatible with [`typeo`](https://github.com/ML4GW/typeo), they can be linked together via a `Pipeline` of `steps`. See the [`typeo` README](https://github.com/ML4GW/typeo/README.md) for more information on how to easily turn your functions into command line scripts. To create a `Pipeline` make a `pyproject.toml` containing a `tool.pinto` table with the following structure:
 
 ```console
 [tool.pinto]
@@ -41,7 +42,11 @@ To execute a Pipeline, simply run
 pinto run /path/to/pipeline/` 
 ```
 
-(alternatively, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and finally run the `project-executable` with the configuration settings specified in the `pyproject.toml`.
+(or simply, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. For each `step`, `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and then run the `project-executable` with the configuration settings specified in the `pyproject.toml`. 
+
+A projects configuration is specified in the `tool.poetry.script`
+
+
 
 ## Structuring a project with Pinto
 To leverage Pinto in a project, all you need is the [`pyproject.toml` file](https://python-poetry.org/docs/pyproject/) required by Poetry which specifies your project's dependencies. If just this file is present, `pinto` will treat your project as a "vanilla" Poetry project and manage all of its dependencies inside a Poetry virtual environment.
