@@ -42,7 +42,7 @@ To execute a Pipeline, simply run
 pinto run /path/to/pipeline/` 
 ```
 
-(or simply, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. For each `step`, `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and then run the `project-executable` with the configuration settings specified in the `pyproject.toml`.  Configuration settings can be specified as follows:
+(or simply, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. For each `step`, `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and then run the `project-executable` with the configuration settings specified in the `pyproject.toml`. Configuration settings for each executable are specified with `[tool.typeo.project-exectuable]` table:
 
 ```toml
 [tool.typeo.base]
@@ -58,7 +58,7 @@ argument_name_2 = 200
 shared_argument  = "${base.shared_argument}"
 ```
 
-The `tool.typeo.base` contains arguments that are shared by multiple executables.
+The `tool.typeo.base` contains arguments that are shared across multiple executables, and can be referenced throughout the `config.toml`. 
 
 ## Structuring a project with Pinto
 To leverage Pinto in a project, all you need is the [`pyproject.toml` file](https://python-poetry.org/docs/pyproject/) required by Poetry which specifies your project's dependencies. If just this file is present, `pinto` will treat your project as a "vanilla" Poetry project and manage all of its dependencies inside a Poetry virtual environment.
