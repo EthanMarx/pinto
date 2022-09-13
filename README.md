@@ -32,8 +32,10 @@ If your commands are compatible with [`typeo`](https://github.com/ML4GW/typeo), 
 ```toml
 [tool.pinto]
 steps = [
-    "project_directory:project-executable:optional-subcommand",
-    ...
+    "project_directory1:project-executable1:optional-subcommand1",
+    "project_directory2:project-executable2:optional-subcommand2",
+    "..."
+    "project_directoryN:project-executableN:optional-subcommandN",
 ]
 ```
 
