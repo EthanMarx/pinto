@@ -29,7 +29,7 @@ pinto run my-command --arg1
 ## Pipelines
 If your commands are compatible with [`typeo`](https://github.com/ML4GW/typeo), they can be linked together via a `Pipeline` of `steps`. See the [`typeo` README](https://github.com/ML4GW/typeo/README.md) for more information on how to easily turn your functions into command line scripts. To create a `Pipeline` make a `pyproject.toml` containing a `tool.pinto` table with the following structure:
 
-```console
+```toml
 [tool.pinto]
 steps = [
     project_directory:project-executable:optional-subcommand,
@@ -42,10 +42,7 @@ To execute a Pipeline, simply run
 pinto run /path/to/pipeline/` 
 ```
 
-(or simply, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. For each `step`, `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and then run the `project-executable` with the configuration settings specified in the `pyproject.toml`. 
-
-A projects configuration is specified in the `tool.poetry.script`
-
+(or simply, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. For each `step`, `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and then run the `project-executable` with the configuration settings specified in the `pyproject.toml`. For directions on configuring a `typeo` command with a `pyproject.toml`, again, see the `typeo` README. 
 
 
 ## Structuring a project with Pinto
