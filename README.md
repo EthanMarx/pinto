@@ -35,7 +35,7 @@ steps = [
     "project_directory1:project-executable1:optional-subcommand1",
     "project_directory2:project-executable2:optional-subcommand2",
     "..."
-    "project_directoryN:project-executableN:optional-subcommandN",
+
 ]
 ```
 
