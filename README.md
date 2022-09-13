@@ -26,6 +26,12 @@ pinto build
 pinto run my-command --arg1
 ```
 
+Additionally, consecutive commands can be linked together via a `Pipeline`. A Pipeline is composed of a series of projects. To execute a Pipeline, simply run 
+```console
+pinto run /path/to/pipeline/` 
+```
+(alternatively, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for a `pyproject.toml` file. This file contains a `tool.pinto` table which describes the project execution order via the `steps` argument. A `step` if formatted in the following way: `project_directory:project-executable:optional_subcommand"`. `Pinto` will enter each `project_directory`, build and activate the projects environment, and run the `project-executable` with the configuration settings specified in the `pyproject.toml`. 
+
 ## Structuring a project with Pinto
 To leverage Pinto in a project, all you need is the [`pyproject.toml` file](https://python-poetry.org/docs/pyproject/) required by Poetry which specifies your project's dependencies. If just this file is present, `pinto` will treat your project as a "vanilla" Poetry project and manage all of its dependencies inside a Poetry virtual environment.
 
