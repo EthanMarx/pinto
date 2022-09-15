@@ -42,7 +42,7 @@ To execute a Pipeline, simply run
 pinto run /path/to/pipeline/` 
 ```
 
-(or simply, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. For each `step`, `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and then run the `project-executable` with the configuration settings specified in the `pyproject.toml`. Configuration settings for each executable are specified with `[tool.typeo.project-exectuable]` table:
+(or simply, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. For each `step`, `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and then run the `project-executable` with the configuration settings specified in the `pyproject.toml`. Configuration settings for each executable are specified with `[tool.typeo.scripts.project-exectuable]` table:
 
 ```toml
 [tool.typeo.base]
