@@ -26,39 +26,6 @@ pinto build
 pinto run my-command --arg1
 ```
 
-## Pipelines
-If your commands are compatible with [`typeo`](https://github.com/ML4GW/typeo), they can be linked together via a `Pipeline` of `steps`. See the `typeo` [README](https://github.com/ML4GW/typeo/README.md) for more information on how to easily turn your functions into command line scripts. To create a `Pipeline` make a `pyproject.toml` containing a `tool.pinto` table with the following structure:
-
-```toml
-[tool.pinto]
-steps = [
-    "project_directory1:project-executable1:optional-subcommand1",
-    "project_directory2:project-executable2:optional-subcommand2",
-]
-```
-
-To execute a Pipeline, simply run 
-```console
-pinto run /path/to/pipeline/` 
-```
-
-(or simply, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. For each `step`, `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and then run the `project-executable` with the configuration settings specified in the `pyproject.toml`. Configuration settings for each executable are specified with `[tool.typeo.scripts.project-exectuable]` table:
-
-```toml
-[tool.typeo.base]
-
-shared_argument = False
-
-[tool.typeo.project-executable1]
-argument_name_1 = 100
-shared_argument  = "${base.shared_argument}"
-
-[tool.typeo.project-executable2]
-argument_name_2 = 200
-shared_argument  = "${base.shared_argument}"
-```
-
-The `tool.typeo.base` contains arguments that are shared across multiple executables, and can be referenced throughout the `config.toml`. 
 
 ## Structuring a project with Pinto
 To leverage Pinto in a project, all you need is the [`pyproject.toml` file](https://python-poetry.org/docs/pyproject/) required by Poetry which specifies your project's dependencies. If just this file is present, `pinto` will treat your project as a "vanilla" Poetry project and manage all of its dependencies inside a Poetry virtual environment.
@@ -98,6 +65,40 @@ then `pinto` will name your project's virtual environment `myproject-nn-trainer`
 
 To see more examples of project structures, consult the [`examples`](./examples) folder.
 
+
+## Pipelines
+If your commands are compatible with [`typeo`](https://github.com/ML4GW/typeo), they can be linked together via a `Pipeline` of `steps`. See the `typeo` [README](https://github.com/ML4GW/typeo/README.md) for more information on how to easily turn your functions into command line scripts. To create a `Pipeline` make a `pyproject.toml` containing a `tool.pinto` table with the following structure:
+
+```toml
+[tool.pinto]
+steps = [
+    "project_directory1:project-executable1:optional-subcommand1",
+    "project_directory2:project-executable2:optional-subcommand2",
+]
+```
+
+To execute a Pipeline, simply run 
+```console
+pinto run /path/to/pipeline/` 
+```
+
+(or simply, `pinto run` if you are in the pipeline directory). `Pinto` will look in `/path/to/project/` for the `pyproject.toml` file, and run the `steps` in the order listed in the `tool.pinto` table. For each `step`, `Pinto` will enter each `project_directory`, `pinto build` the projects environment, activate it, and then run the `project-executable` with the configuration settings specified in the `pyproject.toml`. Configuration settings for each executable are specified with `[tool.typeo.scripts.project-exectuable]` table:
+
+```toml
+[tool.typeo.base]
+
+shared_argument = False
+
+[tool.typeo.project-executable1]
+argument_name_1 = 100
+shared_argument  = "${base.shared_argument}"
+
+[tool.typeo.project-executable2]
+argument_name_2 = 200
+shared_argument  = "${base.shared_argument}"
+```
+
+The `tool.typeo.base` contains arguments that are shared across multiple executables, and can be referenced throughout the `config.toml`. 
 
 ## Installation
 ### Environment set up
